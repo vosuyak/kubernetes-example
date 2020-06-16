@@ -5,8 +5,8 @@ services:
         container_name: golang-api
         # env_file:
             # - ./.env
-        # environment:
-            # - APP_ENV=development
+        environment:
+            - MONGO_DB_HOST=development
         build:
             context: .
             # dockerfile: ./golang-api
