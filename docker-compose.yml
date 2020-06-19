@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+    golang:
+        container_name: golang-api
+        # env_file:
+            # - ./.env
+        environment:
+            - MONGO_DB_HOST=development
+        build:
+            context: .
+            # dockerfile: ./golang-api
+        networks: 
+            - mgo-network
+        ports:
+            - '80:3000'
+        # depends_on: 
+        #     - mongo.organization.db  
+    # mongo.organization.db:
+    #     image: mongo:4.0.2
+    #     container_name: mongoorganization
+    #     restart: always
+    #     environment:
+    #         - MONGO_INITDB_ROOT_USERNAME=vosuyak
+    #         - MONGO_INITDB_ROOT_PASSWORD=password
+    #         - MONGO_INITDB_DATABASE=organizationdb
+    #     volumes: 
+    #         - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    #         - mongodata:/data/db
+    #     networks: 
+    #         - mgo-network
+    #     ports: 
+    #         - '27018:27017'  
+networks: 
+    mgo-network:
+        driver: bridge
+volumes:
+    mongodata:
+
+        # docker-compose build  
+        # docker-compose up -d  
+        # docker-compose down  
+        # docker-compose kill
+        # docker-compose ps
+        # docker-compose logs
+            

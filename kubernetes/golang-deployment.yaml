@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: golang
+  name: golang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: golang
+  template:
+    metadata:
+      labels:
+        io.kompose.network/spotifyapi_mgo-network: "true"
+        io.kompose.service: golang
+    spec:
+      containers:
+      - image: vosuyak/goexamplecloud:tagname
+        name: golang-api
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 3000
+      restartPolicy: Always
